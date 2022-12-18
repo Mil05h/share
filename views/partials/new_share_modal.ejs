@@ -1,0 +1,35 @@
+<!-- NEW SHARE MODAL -->
+
+<div class="modal fade" id="new_share_modal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center bg-dark">
+            <div class="modal-header">
+                <h3 class="modal-title" id="loginModalLabel">Share anonymously</h3>
+                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="needs-validation" action="/2804_ml_new_share" method="POST" novalidate>
+                <div class="modal-body ps-5 pe-5 pb-4">
+                    <div>
+                        <label class="form-label  mb-0" for="post_text">Type here:</label>
+                        <textarea class="form-control bg-dark text_area" id="post_text" name="post_text" cols="30" rows="10"
+                            required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Share must be 10-1000 characters long, and contain only letters and numbers.
+                        </div>
+                    </div>
+                </div>
+                <span>
+                    One share/day allowed.
+                </span>
+                <div class="row mt-4 justify-content-center">
+                    <div class="col-md-4 text-center">
+                        <button type="submit" id="share_btn" class="btn btn-secondary mb-4">Share</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

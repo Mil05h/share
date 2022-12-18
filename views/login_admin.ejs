@@ -1,0 +1,27 @@
+<% layout('boilerplate_admin') %>
+
+  <%- include('./partials/flash') %>
+
+    <div class="container mt-5">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-10 col-md-4 text-center ">
+                <h1>Login</h1>
+                <form action="/login_admin_777" method="POST">
+                    <div class="mt-5">
+                        <label for="admin" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="admin">
+                    </div>
+                    <div class="mt-4">
+                        <label for="psw" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="psw">
+                    </div>
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-success">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+

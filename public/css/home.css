@@ -1,0 +1,147 @@
+/* body {
+    background-color: rgb(10, 10, 10);
+} */
+
+/* .share {
+    background-color: rgb(30, 30, 30);
+    border: 1px solid gray;
+} */
+
+.navbar{
+    background-color: transparent;
+}
+
+.scrolled {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+    background-color: transparent;
+}
+
+p {
+    word-wrap: break-word;
+    color: rgb(220, 220, 170);
+}
+
+.gray {
+    color: gray !important;
+}
+
+.modal {
+    color: white;
+}
+
+.text_area {
+    color: white !important;
+}
+
+.text_area_comment {
+    color: white !important;
+    width: 75%;
+}
+
+.approve {
+    color: rgb(156, 220, 254);
+    border: none;
+}
+
+.approve:hover {
+    color: white;
+}
+
+.approve_com {
+    color: rgb(156, 220, 254);
+    border: none;
+}
+
+.condemn_com:hover {
+    color: white;
+}
+
+.approve_com:hover {
+    color:white;
+}
+
+
+.condemn {
+    color: rgb(197, 134, 192);
+    border: none;
+}
+
+.condemn:hover {
+    color: white;
+}
+
+.condemn_com {
+    color: rgb(197, 134, 192);
+    border: none;
+}
+
+.comments {
+    color: rgb(206, 145, 120);
+    border: none;
+}
+
+.comments:hover {
+    color: white;
+}
+
+.share_btn {
+    color: white;
+}
+
+.share_btn:hover {
+    transform: translateY(-0.2em);
+    color: white;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.reaction {
+    color: white;
+}
+
+.dropdown-item {
+    color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: gray !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+.nav-link {
+    font-size: 1.5rem;
+}
+
+.search_input {
+    color: white !important;
+    width: 109px !important;
+    border-color: gray !important;
+}
+
+.search_input::-webkit-inner-spin-button,
+.search_input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.date_div {
+    position: relative;
+}
+
+#anch {
+    position: absolute;
+}
+
+#date {
+    visibility: hidden;
+    position: relative;
+    z-index: 1;
+}

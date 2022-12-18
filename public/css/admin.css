@@ -1,0 +1,26 @@
+.manage {
+    background-color: rgb(30, 30, 30);
+    color: white;
+}
+
+.white{
+    color: white;
+}
+
+.gray{
+    color: gray;
+}
+
+.border_r{
+    border-right: 1px solid black;
+}
+
+.register{
+    width: 200px;
+}
+
+@media(max-width: 700px) {
+.border_r{
+    border-right: none;
+}
+}

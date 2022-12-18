@@ -1,0 +1,42 @@
+<% layout('boilerplate_admin') %>
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <form action="/admin_page_777">
+                <button class="btn btn-outline-dark"><i class="bi bi-box-arrow-in-left"></i> Dashboard</button>
+            </form>
+        </div>
+        <div class="row mt-5 justify-content-center">
+            <div class="col-10 col-md-4 border_r text-center">
+                <h2>Admins:</h2>
+                <ul class="mt-5">
+                    <% for(let i = 0; i<results.length; i++) {%>
+                    <li class="mb-2 text-start">
+                        <h5 class="d-inline"><%= results[i].username %></h5>
+                        <form class="d-inline ms-5" action="/admin_777/delete_/<%= results[i].username %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn"><i class="bi bi-trash"></i></button>
+                        </form>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="col-10 col-md-4 text-center">
+                <div class="register mx-auto">
+                    <h2>New Admin</h2>
+                    <form action="/register_admin_777" method="POST">
+                        <div class="mt-5">
+                            <label for="admin" class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" id="admin">
+                        </div>
+                        <div class="mt-4">
+                            <label for="psw" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="psw">
+                        </div>
+                        <div class="mt-5">
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

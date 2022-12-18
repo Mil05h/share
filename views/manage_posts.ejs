@@ -1,0 +1,52 @@
+<% layout('boilerplate_admin') %>
+
+<div class="container mt-5">
+    <div class="text-center">
+        <form action="/admin_page_777">
+            <button class="btn btn-outline-dark"><i class="bi bi-box-arrow-in-left"></i> Dashboard</button>
+        </form>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        <% if(!results.length) {%>
+        <h2 class="mt-5 text-center">No new shares</h2>
+        <% }else{ %>
+        <div class="col-6 text-center">
+            <div class="d-flex">
+                <h2>Shares</h2>
+                <div class="ms-auto">
+                    <span>Shown: <%= results[0].count %></span> <br>
+                    <span>New: <%= results.length %></span>
+                </div>
+            </div>
+            <% for(let i = 0; i<results.length; i++) {%>
+            <div class="share mt-5">
+                <p class="d-inline"><%= results[i].post_text %></p>
+                <div class="mt-5">
+                    <form class="d-inline" action="/admin_777/_share_/approve_/<%= results[i].id %>?_method=PATCH"
+                        method="POST">
+                        <button type="submit" class="btn btn-outline-success"><i
+                                class="bi bi-check-circle"></i></button>
+                    </form>
+                    <form class="d-inline ms-5" action="/admin_777/_share_/delete_/<%= results[i].id %>?_method=DELETE"
+                        method="POST">
+                        <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-circle"></i></button>
+                    </form>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    const shares = document.querySelectorAll('.share')
+
+    for (let i = 0; i < shares.length; i++) {
+        if (i === 0) {
+            shares[i].hidden = false;
+        } else {
+            shares[i].hidden = true;
+        }
+    }
+</script>

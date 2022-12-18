@@ -1,0 +1,67 @@
+<% layout('boilerplate') %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 share_div">
+            <% if(!results.length) {%>
+            <h1 class="gray text-center mt-5">NO SHARES FOR SELECTED DATE</h1>
+            <% } %>
+            <% for(let i = 0; i < results.length; i++) {%>
+            <% if(results[i].is_admin_verified === 1) {%>
+            <div class="row mt-5 p-2 p-md-3  share shadow-lg">
+                <small class="col-6 gray">#<%= results[i].id %></small>
+                <small class="col-6 text-end gray"><%= results[i].created_at.toDateString().slice(4,15) %></small>
+                <p class="text-center mt-5 mb-5">
+                    <%= results[i].post_text %>
+                </p>
+                <div class="btn-group text-center" role="group">
+                    <div class="col-4">
+                        <div>
+                            <small class="reaction approve_count gray"><%= results[i].approve %></small>
+                        </div>
+                        <input type="hidden" name="post_id" value="<%= results[i].id %>">
+                        <button type="submit" id="<%= results[i].id %>" class="bg-dark d-inline approve">
+                           <i class="bi bi-hand-thumbs-up-fill"></i> Approve
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <div>
+                            <small class="reaction condemn_count gray"><%= results[i].condemn %></small>
+                        </div>
+                        <input type="hidden" name="post_id" value="<%= results[i].id %>">
+                        <button type="submit" id="<%= results[i].id %>" class="bg-dark condemn">
+                            <small class="text-center"><i class="bi bi-hand-thumbs-down-fill"></i> Condemn</small>
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <div>
+                            <small class="reaction gray"><%= results[i].comment_count %></small>
+                        </div>
+                        <form action="/<%= results[i].id %>/comment">
+                            <button id="<%= results[i].id %>" class="bg-dark d-inline comments">
+                                <small class="text-center"><i class="bi bi-chat-right-text-fill"></i> Comments</small>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+<%- include('./partials/new_share_modal') %>
+
+
+<script>
+    const cookie_1 = <%- JSON.stringify(cookie_1) %>;
+</script>
+
+
+<script src="/js/bootstrap_validation.js"></script>
+<script src="/js/share_reaction.js"></script>
+<script src="/js/infinite_scroll.js"></script>
+<script src="/js/validate_share.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

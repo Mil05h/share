@@ -1,0 +1,33 @@
+<!-- NEW COMMENT MODAL -->
+
+
+<div class="modal fade" id="new_comment_modal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center bg-dark">
+            <div class="modal-header">
+                <h3 class="modal-title" id="loginModalLabel">What is your oppinion?</h3>
+                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="needs-validation" action="/<%= results[0].post_id %>/comment/2804_ml" method="POST" novalidate>
+                <div class="modal-body ps-5 pe-5 pb-4">
+                    <div>
+                        <label class="form-label  mb-0" for="comment_text">Type here:</label>
+                        <textarea class="form-control bg-dark text_area" id="comment_text" name="comment_text" cols="30" rows="10"
+                            required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Comment must be 5-500 characters long, and contain only letters and numbers.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 justify-content-center">
+                    <div class="col-md-4 text-center">
+                        <button type="submit" id="comment_btn" class="btn btn-secondary mb-4">Comment</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

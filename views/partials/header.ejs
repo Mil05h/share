@@ -1,0 +1,76 @@
+<nav id="mainNavbar" class="navbar sticky-top navbar-dark bg-dark navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-2" href="/"><img class="logo" src="" alt=""><i class="bi bi-share"></i></a>
+    <button id="toggler" class="navbar-toggler navbar-light" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle">
+      <span id="" class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-md-5 ps-md-4">
+        <a class="nav-link ms-auto " href="/"><i class="bi bi-house"></i> Home</a>
+        <% if(path.length <= 1){ %>
+        <div class="dropdown ms-auto">
+          <a class="nav-link me-md-3 dropdown-toggle" type="button" id="share_sort" data-bs-toggle="dropdown"
+            aria-expanded="false"><i class="bi bi-sort-down"></i> Sort</a>
+          <ul class="dropdown-menu bg-dark">
+            <li><a class="dropdown-item" href="/?sort=popular">Popular</a></li>
+            <li><a class="dropdown-item" href="/">Newest</a></li>
+            <li><a class="dropdown-item" href="/?sort=approve">Approvals</a></li>
+            <li><a class="dropdown-item" href="/?sort=condemn">Condemnations</a></li>
+            <li><a class="dropdown-item" href="/?sort=comments">Comments</a></li>
+            <li><a class="dropdown-item" href="/?sort=random">Random</a></li>
+          </ul>
+        </div>
+        <% } else {%>
+          <div class="dropdown ms-auto">
+            <a class="nav-link me-md-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                class="bi bi-sort-down"></i> Sort Comments</a>
+            <ul class="dropdown-menu bg-dark">
+              <li><a class="dropdown-item" href="<%= path %>?sort=popular">Popular</a></li>
+              <li><a class="dropdown-item" href="<%= path %>">Newest</a></li>
+              <li><a class="dropdown-item" href="<%= path %>?sort=approve">Approvals</a></li>
+              <li><a class="dropdown-item" href="<%= path %>?sort=condemn">Condemnations</a></li>
+              <li><a class="dropdown-item" href="<%= path %>?sort=random">Random</a></li>
+            </ul>
+          </div>
+          <% } %>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <% if(path.length <= 1){ %>
+        <a class="nav-link ms-auto" type="button" class="nav-link" data-bs-toggle="modal"
+          data-bs-target="#new_share_modal"><i class="bi bi-plus-circle"></i> Share</a>
+        <% } %> 
+      </div>
+      <div class="navbar-nav ms-auto">
+        <div class="search_div">
+          <form id="search_form" action="/" class="d-flex">
+            <a class="nav-link ms-auto me-md-2" id="search_anchor" type="button"><i class="bi bi-search"></i> Search</a>
+            <input type="number" hidden class="nav-link bg-dark mt-2 search_input form-control me-4">
+          </form>
+        </div>
+        <div class="date_div ms-auto">
+          <a type="button" class="nav-link ms-5 ps-4 ms-md-0 ps-md-0" id="anch"><i class="bi ms-3 ps-1 ms-md-0 ps-md-0 bi-calendar3"></i>
+            Archive</a>
+          <form id="date_form" action="/" method="GET">
+            <input class="nav-link" name="date" type="date" id="date">
+          </form>
+        </div>
+      </div>
+    </div>
+</nav>
+
+
+<script src="/js/header_func.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  $(function () {
+    $(document).scroll(function () {
+      const $nav = $("#mainNavbar");
+      $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+    });
+  });
+</script>

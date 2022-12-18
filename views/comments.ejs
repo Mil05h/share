@@ -1,0 +1,100 @@
+<% layout('boilerplate') %>
+
+
+<div class="container">
+    <% if(!results.length || results[0].post_is_admin_verified === 0){ %>
+    <h1 class="gray text-center mt-5 pt-5 mb-5 pb-5">SHARE WITH SELECTED # DOES NOT EXIST <br>
+        OR IT WAITS FOR ADMINS REVIEW</h1>
+    <% } else { %>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            <div class="row mt-5 p-2 p-md-3  shadow-lg share">
+                <small class="col-6 gray">#<%= results[0].post_id %></small>
+                <small class="col-6 text-end gray"><%= results[0].post_created_at.toDateString().slice(4,15) %></small>
+                <p class="text-center mt-5 mb-5">
+                    <%= results[0].post_text %>
+                </p>
+                <div class="row align-items-end btn-group text-center" role="group">
+                    <div class="col-4">
+                        <div>
+                            <small class="reaction approve_count gray"><%= results[0].post_approve %></small>
+                        </div> <input type="hidden" name="post_id" value="<%= results[0].post_id %>">
+                        <button type="submit" id="<%= results[0].post_id %>" class="bg-dark d-inline approve">
+                            <small class="text-center"><i class="bi bi-hand-thumbs-up-fill"></i> Approve</small>
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <div>
+                            <small class="reaction condemn_count gray"><%= results[0].post_condemn %></small>
+                        </div>
+                        <input type="hidden" name="post_id" value="<%= results[0].post_id %>">
+                        <button type="submit" id="<%= results[0].post_id %>" class="bg-dark d-inline condemn">
+                            <small class="text-center"><i class="bi bi-hand-thumbs-down-fill"></i> Condemn</small>
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <div>
+                            <button data-bs-toggle="modal" data-bs-target="#new_comment_modal"
+                                class="bg-dark comments"><i class="bi bi-pencil"></i> Comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 col-md-6">
+            <% if(results[0].comment_id !== 0) {%>
+            <% for(let i = 0; i < results.length; i++) {%>
+            <% if(results[i].comment_is_admin_verified === 1) {%>
+            <div class="row mt-5 p-2 p-md-3 shadow-lg share">
+                <small class="col-12 text-end gray"><%= new Date (results[i].comment_created_at).toDateString().slice(4,15) %></small>
+                <p class="text-center mt-4 mb-4">
+                    <%= results[i].comment_text %>
+                </p>
+                <div class="btn-group text-center" role="group">
+                    <div class="col-6">
+                        <div>
+                            <small class="reaction approve_count_com gray"><%= results[i].comment_approve %></small>
+                        </div> <input type="hidden" name="post_id" value="<%= results[i].comment_id %>">
+                        <button type="submit" id="<%= results[i].comment_id %>" class="bg-dark d-inline approve_com">
+                            <small class="text-center"><i class="bi bi-hand-thumbs-up-fill"></i> Approve</small>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <small class="reaction condemn_count_com gray"><%= results[i].comment_condemn %></small>
+                        </div>
+                        <input type="hidden" name="post_id" value="<%= results[i].comment_id %>">
+                        <button type="submit" id="<%= results[i].comment_id %>" class="bg-dark d-inline condemn_com">
+                            <small class="text-center"><i class="bi bi-hand-thumbs-down-fill"></i> Condemn</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <% } %> 
+            <% } %>
+            <% }else{ %>
+            <h1 class="mt-5 mb-5 gray text-center">No comments yet. <br> Be the first one to comment!</h1>
+            <% } %>
+        </div>
+    </div>
+    
+    <% } %>
+</div>
+
+<% if(results.length){ %>
+<%- include('./partials/new_comment_modal') %>
+<% } %>
+
+
+
+<script>
+    const cookie_1 = <%- JSON.stringify(cookie_1) %>;
+    const cookie_2 = <%- JSON.stringify(cookie_2) %>;
+</script>
+
+
+<script src="/js/bootstrap_validation.js"></script>
+<script src="/js/share_reaction.js"></script>
+<script src="/js/comments_reaction.js"></script>
+<script src="/js/validate_comment.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
