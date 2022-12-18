@@ -75,11 +75,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 const options = {
-    host: process.env.CLEAR_HOST,
-    port: process.env.CLEAR_PORT,
-    user: process.env.CLEAR_USER,
-    password: process.env.CLEAR_PASSWORD,
-    database: process.env.CLEAR_DATABASE,
+    host: process.env.AWS_RDS_HOST,
+    port: process.env.AWS_RDS_PORT,
+    user: process.env.AWS_RDS_USER,
+    // password: process.env.AWS_RDS_PASSWORD,
+    // database: process.env.AWS_RDS_DATABASE,
 };
 
 const sessionStore = new MySQLStore(options);
