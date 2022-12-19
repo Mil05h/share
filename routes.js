@@ -343,7 +343,7 @@ router.route('/login_admin_777')
     });
 
 router.route('/register_admin_777')
-    .post(is_admin, userExists, (req, res, next) => {
+    .post( userExists, (req, res, next) => {
         const saltHash = genPassword(req.body.password);
         const salt = saltHash.salt;
         const hash = saltHash.hash;
