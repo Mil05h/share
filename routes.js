@@ -60,7 +60,7 @@ router.route('/admin_page_777')
     })
 
 router.route('/admin_777/new')
-    .get((req, res) => {
+    .get(is_admin, (req, res) => {
         const q = "SELECT username FROM admins WHERE id != 1;";
         connection.query(q, function (error, results, fields) {
             if (error) throw error;
@@ -343,7 +343,7 @@ router.route('/login_admin_777')
     });
 
 router.route('/register_admin_777')
-    .post( userExists, (req, res, next) => {
+    .post(is_admin, userExists, (req, res, next) => {
         const saltHash = genPassword(req.body.password);
         const salt = saltHash.salt;
         const hash = saltHash.hash;
