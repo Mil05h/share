@@ -180,5 +180,5 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Express app is runnign on port: ${port}`)
+    console.log(`Expressss app is runnign on port: ${port}`)
 });
