@@ -60,7 +60,7 @@ router.route('/admin_page_777')
     })
 
 router.route('/admin_777/new')
-    .get(is_admin, (req, res) => {
+    .get((req, res) => {
         const q = "SELECT username FROM admins WHERE id != 1;";
         connection.query(q, function (error, results, fields) {
             if (error) throw error;
