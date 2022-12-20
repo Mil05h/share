@@ -3,6 +3,14 @@ const mysql = require('mysql')
 const crypto = require('crypto')
 const { validate_share_schema, validate_comment_schema} = require('./schemas.js');
 
+const connection = mysql.createConnection({
+    host: process.env.AWS_RDS_HOST,
+    port: process.env.AWS_RDS_PORT,
+    user: process.env.AWS_RDS_USER,
+    password: process.env.AWS_RDS_PASSWORD,
+    database: process.env.AWS_RDS_DATABASE,
+    multipleStatements: true
+});
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -34,7 +42,7 @@ module.exports.isAuth = (req, res, next) => {
 }
 
 module.exports.is_admin = (req, res, next) => {
-    if (req.isAuthenticated() && req.user.id === 1) {
+    if (req.isAuthenticated() && req.user.id === 3) {
         next()
     } else {
         req.flash('error', 'Access denied')
@@ -43,23 +51,6 @@ module.exports.is_admin = (req, res, next) => {
 }
 
 module.exports.userExists = (req, res, next) => {
-
-    ////////////////////////////// DEVELOPMENT LOCAL DB /////////////////////////////
-    const connection = mysql.createConnection({
-        host: process.env.AWS_RDS_HOST,
-        port: process.env.AWS_RDS_PORT,
-        user: process.env.AWS_RDS_USER,
-        password: process.env.AWS_RDS_PASSWORD,
-        database: process.env.AWS_RDS_DATABASE,
-        multipleStatements: true
-    });
-    ////////////////////////////// DEVELOPMENT LOCAL DB /////////////////////////////
-
-
-    ///////////////////////////////// PRODUCTION DB ///////////////////////////////////
-    // const connection = mysql.createConnection(process.env.JAWSDB_URL);
-    ///////////////////////////////// PRODUCTION DB ///////////////////////////////////
-
     connection.query(`SELECT * FROM admins WHERE username = "${req.body.uname}"`, function (error, results, fields) {
         if (error) {
             console.log('error')
