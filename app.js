@@ -99,7 +99,6 @@ app.use(passport.session())
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-////////////////////////////// DEVELOPMENT LOCAL DB /////////////////////////////
 const connection = mysql.createConnection({
     host: process.env.AWS_RDS_HOST,
     port: process.env.AWS_RDS_PORT,
@@ -108,11 +107,7 @@ const connection = mysql.createConnection({
     database: process.env.AWS_RDS_DATABASE,
     multipleStatements: true
 });
-////////////////////////////// DEVELOPMENT LOCAL DB /////////////////////////////
 
-///////////////////////////////// PRODUCTION DB ///////////////////////////////////
-// const connection = mysql.createConnection(process.env.JAWSDB_URL);
-///////////////////////////////// PRODUCTION DB ///////////////////////////////////
 
 
 const customFields = {

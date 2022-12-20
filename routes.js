@@ -5,7 +5,6 @@ const mysql = require('mysql')
 const passport = require('passport');
 const catchAsyncErr = require('./utils/catchAsyncErr')
 
-////////////////////////////// DEVELOPMENT LOCAL DB /////////////////////////////
 const connection = mysql.createConnection({
     host: process.env.AWS_RDS_HOST,
     port: process.env.AWS_RDS_PORT,
@@ -14,12 +13,6 @@ const connection = mysql.createConnection({
     database: process.env.AWS_RDS_DATABASE,
     multipleStatements: true
 });
-////////////////////////////// DEVELOPMENT LOCAL DB /////////////////////////////
-
-
-///////////////////////////////// PRODUCTION DB ///////////////////////////////////
-// const connection = mysql.createConnection(process.env.JAWSDB_URL);
-///////////////////////////////// PRODUCTION DB ///////////////////////////////////
 
 
 router.route('/admin_777')
@@ -61,7 +54,7 @@ router.route('/admin_page_777')
 
 router.route('/admin_777/new')
     .get(is_admin, (req, res) => {
-        const q = "SELECT username FROM admins WHERE id != 1;";
+        const q = "SELECT username FROM admins WHERE id != 3;";
         connection.query(q, function (error, results, fields) {
             if (error) throw error;
             res.render('manage_admins', { results })
