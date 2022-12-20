@@ -1,7 +1,7 @@
 const ExpressError = require('./utils/expressError');
 const mysql = require('mysql')
 const crypto = require('crypto')
-const { validate_share_schema, validate_comment_schema} = require('./schemas.js');
+const { validate_share_schema, validate_comment_schema } = require('./schemas.js');
 
 const connection = mysql.createConnection({
     host: process.env.AWS_RDS_HOST,
@@ -16,7 +16,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.flash('error', 'Not authorized')
         return res.redirect('/');
-    }else {
+    } else {
         next()
     }
 }
@@ -53,7 +53,8 @@ module.exports.is_admin = (req, res, next) => {
 module.exports.userExists = (req, res, next) => {
     connection.query(`SELECT * FROM admins WHERE username = "${req.body.uname}"`, function (error, results, fields) {
         if (error) {
-            console.log('error')
+            const msg = error.details.map(el => el.message).join(',');
+            throw new ExpressError(msg, 500)
         } else if (results.length > 0) {
             req.flash('error', 'User already exist.')
             res.redirect('/')

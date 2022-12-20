@@ -1,20 +1,20 @@
 <%- layout('boilerplate') %>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-8 mt-2 pt-3 pb-1 error text-center offset-2">
-          <h1>
-            <%= statusCode %>
-          </h1>
-          <p>
-            <%= err.message %>
-          </p>
-          <p>
-            <% if (process.env.NODE_ENV !== 'production') { %>
-            <%= err.stack %>
-            <% } %>
+<div class="container">
+  <div class="row">
+    <div class="col-8 mt-2 pt-3 pb-1 error text-center offset-2">
+      <h1 style="color: salmon !important;">
+        <%= statusCode %>
+      </h1>
+      <p>
+        <%= err.message %>
+      </p>
+      <p>
+        <% if (process.env.NODE_ENV !== 'production') { %>
+        <%= err.stack %>
+        <% } %>
 
-          </p>
-        </div>
-      </div>
+      </p>
     </div>
+  </div>
+</div>

@@ -214,7 +214,6 @@ router.route('/')
                 if (error) throw error;
                 res.render('home', { results, pages })
             });
-
         }
     })
 
